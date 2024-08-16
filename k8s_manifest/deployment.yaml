@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: dua-app
+  name: dua-app
+  namespace: dua
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dua-app
+  template:
+    metadata:
+      labels:
+        app: dua-app
+    spec:
+      containers:
+        - image: gauss022/dua_auth:a1263d802f62431bc196eae4319e659105726e8e
+          name: dua-auth
+          ports:
+            - containerPort: 8000
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 10001
+            runAsGroup: 10001
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "2000m"
+      imagePullSecrets:
+        - name: regcred
+      serviceAccountName: default

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dua-auth-service
+  namespace: dua
+spec:
+  selector:
+    app: dua-auth
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: NodePort

@@ -20,7 +20,6 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 crypt_context = CryptContext(schemes=["sha256_crypt", "md5_crypt"], deprecated="auto")
 
-
 oauth2_scheme = OAuth2PasswordBearer(
     tokenUrl="login",
     scopes={
